@@ -22,11 +22,9 @@ class AddNewTransaction extends StatelessWidget {
               labelText: 'Amount of transaction'
           ),
         ),
-        TextButton(
-            style: TextButton.styleFrom(
-              textStyle: TextStyle(fontSize: 25),
-              primary: Colors.deepOrange,
-              shadowColor: Colors.purple,
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              textStyle: TextStyle(fontSize: 15),
             ),
             onPressed: () => addNewTx(
               titleController.text,
