@@ -9,47 +9,45 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      child: ListView(
-        children: _userTransactions.map(
-                (t) {
-              return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Text(t.amount.toString()),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Colors.deepPurpleAccent
-                            )
-                        ),
-                        margin: EdgeInsets.all(10.00),
-                        padding: EdgeInsets.all(12),
+      child: ListView.builder(
+          itemBuilder: (ctx, index) {
+            var transaction = _userTransactions[index];
+            return Card(
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(transaction.amount.toString()),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Colors.deepPurpleAccent
+                          )
                       ),
-                      Column(
-                        children: [
-                          Container(
-                            child: Text(
-                              t.title.toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold
-                              ),
+                      margin: EdgeInsets.all(10.00),
+                      padding: EdgeInsets.all(12),
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            transaction.title.toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold
                             ),
-                            margin: EdgeInsets.only(left: 10),
                           ),
-                          Container(
-                            child: Text(t.date.toString()),
-                            margin: EdgeInsets.only(left: 10),
-                          ),
-                        ],
-                      )
-                    ],
-                  ));
-            }
-        ).toList(),
+                          margin: EdgeInsets.only(left: 10),
+                        ),
+                        Container(
+                          child: Text(transaction.date.toString()),
+                          margin: EdgeInsets.only(left: 10),
+                        ),
+                      ],
+                    )
+                  ],
+                ));
+            },
+          itemCount: _userTransactions.length,
       )
     );
-
-
   }
 }
