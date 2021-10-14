@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:section_4_practice/transaction_list.dart';
-import 'models/transaction.dart';
+import 'package:section_4_practice/widgets/transactions.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,25 +52,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-  void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,25 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Card(child: Column(
-              children: [
-                TextField(decoration: InputDecoration(
-                    labelText: 'Title of transaction',
-                    labelStyle: TextStyle(color: Colors.grey)
-                ),),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Amount of transaction'
-                  ),
-                )
-
-              ],
-            ),
-            ),
             Card(
               child: Text('Some graph here'),
             ),
-            TransactionList(),
+            Transactions(),
           ],
         ),
       ),
