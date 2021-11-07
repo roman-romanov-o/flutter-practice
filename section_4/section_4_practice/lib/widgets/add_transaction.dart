@@ -18,6 +18,7 @@ class AddNewTransaction extends StatelessWidget {
         ),),
         TextField(
           controller: amountController,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
               labelText: 'Amount of transaction'
           ),

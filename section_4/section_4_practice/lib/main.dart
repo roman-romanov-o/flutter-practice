@@ -57,6 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello my friend!'),
+        actions: [
+          IconButton(
+            onPressed: null,
+            icon: Icon(Icons.add),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
+
+
 class TransactionList extends StatelessWidget {
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
+
   final List<Transaction> _userTransactions;
   TransactionList(this._userTransactions);
 
@@ -38,7 +43,9 @@ class TransactionList extends StatelessWidget {
                           margin: EdgeInsets.only(left: 10),
                         ),
                         Container(
-                          child: Text(transaction.date.toString()),
+                          child: Text(
+                            formatter.format(transaction.date)
+                          ),
                           margin: EdgeInsets.only(left: 10),
                         ),
                       ],
