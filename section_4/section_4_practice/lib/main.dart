@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:section_4_practice/widgets/transactions.dart';
+import 'package:section_4_practice/models/transaction.dart';
+import 'package:section_4_practice/widgets/add_transaction.dart';
+import 'package:section_4_practice/widgets/transaction_list.dart';
+import 'package:uuid/uuid.dart';
+
+
+var uuid = Uuid();
+
 
 void main() {
   runApp(MyApp());
@@ -52,17 +59,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final List<Transaction> _userTransactions = [
+    Transaction(
+        id: 't1',
+        title: 'test 1',
+        date: DateTime.now(),
+        amount: 20.10
+    ),
+    Transaction(
+        id: 't2',
+        title: 'test 2',
+        date: DateTime.now(),
+        amount: 20.10
+    ),
+  ];
+
+  void startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) => AddNewTransaction(_addNewTransaction),
+    );
+  }
+
+  void _addNewTransaction(String title, double amount) {
+    setState(() {
+      _userTransactions.add(Transaction(
+        id: uuid.v1(),
+        title: title,
+        amount: amount,
+        date: DateTime.now(),
+      ));
+    });
+  }
+
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctx) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello my friend!'),
-        actions: [
-          IconButton(
-            onPressed: null,
-            icon: Icon(Icons.add),
-          )
-        ],
+        actions: [],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -71,9 +109,17 @@ class _MyHomePageState extends State<MyHomePage> {
             Card(
               child: Text('Some graph here'),
             ),
-            Transactions(),
+            Column(
+              children: [
+                TransactionList(_userTransactions),
+              ],
+            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => startAddNewTransaction(ctx),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
