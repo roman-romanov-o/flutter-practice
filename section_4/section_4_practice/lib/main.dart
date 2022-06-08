@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:section_4_practice/transaction_list.dart';
+import 'package:section_4_practice/widgets/transaction_list.dart';
+import 'package:section_4_practice/widgets/user_transactions.dart';
 import 'models/transaction.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
@@ -53,23 +54,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-  void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
 
 
   @override
@@ -82,25 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Card(child: Column(
-              children: [
-                TextField(decoration: InputDecoration(
-                    labelText: 'Title of transaction',
-                    labelStyle: TextStyle(color: Colors.grey)
-                ),),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Amount of transaction'
-                  ),
-                )
-
-              ],
-            ),
-            ),
-            Card(
-              child: Text('Some graph here'),
-            ),
-            TransactionList(),
+              Card(child: Text('Some graph here in future'),),
+              UserTransactions(),
           ],
         ),
       ),
