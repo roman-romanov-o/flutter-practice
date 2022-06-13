@@ -11,8 +11,6 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends State<AddTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  final Function addTxMethod;
-  _AddTransactionState(this.addTxMethod);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class _AddTransactionState extends State<AddTransaction> {
         ),
         TextButton(
             onPressed: () {
-              addTxMethod(
+              widget.addTxMethod(
                   titleController.text,
                   double.parse(amountController.text)
               );
