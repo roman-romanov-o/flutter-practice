@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:section_4_practice/widgets/transaction_list.dart';
-import 'package:section_4_practice/widgets/user_transactions.dart';
 import 'models/transaction.dart';
+import 'package:section_4_practice/widgets/transaction_list.dart';
+import 'package:section_4_practice/models/transaction.dart';
+import 'package:section_4_practice/widgets/add_transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,23 +55,65 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> transactions = [
+    Transaction(
+        id: 't1',
+        title: 'test 1',
+        date: DateTime.now(),
+        amount: 20.10
+    ),
+    Transaction(
+        id: 't2',
+        title: 'test 2',
+        date: DateTime.now(),
+        amount: 20.10
+    ),
+  ];
 
+  void addTransaction(String title, double amount) {
+    setState(() {
+      transactions.add(
+          Transaction(
+              id: 'test',
+              title: title,
+              amount: amount,
+              date: DateTime.now()
+          )
+      );
+    });
+  }
+
+  void startAddTransaction(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (builderContext) => AddTransaction(addTransaction)
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello my friend!'),
+        actions: [
+          IconButton(onPressed: () => startAddTransaction(context), icon: Icon(Icons.add))
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
               Card(child: Text('Some graph here in future'),),
-              UserTransactions(),
+              TransactionList(transactions),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => startAddTransaction(context),
+          child: Icon(Icons.add),
+          focusColor: Colors.green,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

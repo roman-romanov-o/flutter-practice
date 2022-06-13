@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class AddTransaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
+class AddTransaction extends StatefulWidget {
   final Function addTxMethod;
   AddTransaction(this.addTxMethod);
+
+  @override
+  State<AddTransaction> createState() => _AddTransactionState(addTxMethod);
+}
+
+class _AddTransactionState extends State<AddTransaction> {
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+  final Function addTxMethod;
+  _AddTransactionState(this.addTxMethod);
 
   @override
   Widget build(BuildContext context) {
@@ -15,25 +22,34 @@ class AddTransaction extends StatelessWidget {
         TextField(
           controller: titleController,
           decoration: InputDecoration(
-            border: UnderlineInputBorder(),
-            labelText: 'Title for your transaction'
+              labelText: 'Title for your transaction'
           ),
         ),
         TextField(
           controller: amountController,
           decoration: InputDecoration(
-            labelText: 'Amount of money'
+              labelText: 'Amount of money'
           ),
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
+          onTap: () => print(titleController.text),
+          onChanged: (value) {
+            print('TEST');
+          },
+          // keyboardType: TextInputType.number,
         ),
         TextButton(
-            onPressed: () => addTxMethod(
-                titleController.text,
-                double.parse(amountController.text)
-            ),
+            onPressed: () {
+              addTxMethod(
+                  titleController.text,
+                  double.parse(amountController.text)
+              );
+              titleController.clear();
+              amountController.clear();
+            },
             child: Text('Add new transaction')
         ),
       ],),
     );
   }
+
 }
