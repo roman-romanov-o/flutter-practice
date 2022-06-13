@@ -22,7 +22,7 @@ class TransactionList extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       border: Border.all(
-                          color: Colors.greenAccent
+                        color: Theme.of(context).primaryColorLight,
                       )
                   ),
                   margin: EdgeInsets.all(10.00),
@@ -48,7 +48,10 @@ class TransactionList extends StatelessWidget {
                   ],
                 )
               ],
-            ));
+            ),
+            elevation: 0.7,
+            shadowColor: Theme.of(context).primaryColor,
+          );
         },
         itemCount: transactions.length,
       )
