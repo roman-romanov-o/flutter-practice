@@ -9,9 +9,22 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth =MediaQuery.of(context).size.width;
+
     return Container(
-      height: MediaQuery.of(context).size.height * 0.65,
-      child: ListView.builder(
+      height: deviceHeight * 0.65,
+      width: deviceWidth,
+      child: transactions.isEmpty ? Column(
+        children: [
+          Text('There is not transactions yet!'),
+          Container(
+            height: deviceHeight * 0.3,
+            width: deviceWidth * 0.6,
+            child: Image.asset('assets/icons/horrible.png', fit: BoxFit.fill,),
+          ),
+        ],
+      ) : ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(child: Row(
               children: [

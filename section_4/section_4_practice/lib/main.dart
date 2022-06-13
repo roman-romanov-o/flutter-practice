@@ -30,7 +30,14 @@ class MyApp extends StatelessWidget {
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Quicksand'
+        fontFamily: 'Quicksand',
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.bold,
+          ),
+          centerTitle: true
+        )
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -56,20 +63,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1',
-        title: 'test 1',
-        date: DateTime.now(),
-        amount: 20.10
-    ),
-    Transaction(
-        id: 't2',
-        title: 'test 2',
-        date: DateTime.now(),
-        amount: 20.10
-    ),
-  ];
+  final List<Transaction> transactions = [];
 
   void addTransaction(String title, double amount) {
     setState(() {
@@ -95,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Expenses'),
+        title: Text('My Expenses',),
         actions: [
           IconButton(onPressed: () => startAddTransaction(context), icon: Icon(Icons.add))
         ],
