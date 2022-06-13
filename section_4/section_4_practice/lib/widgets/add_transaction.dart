@@ -5,7 +5,7 @@ class AddTransaction extends StatefulWidget {
   AddTransaction(this.addTxMethod);
 
   @override
-  State<AddTransaction> createState() => _AddTransactionState(addTxMethod);
+  State<AddTransaction> createState() => _AddTransactionState();
 }
 
 class _AddTransactionState extends State<AddTransaction> {
