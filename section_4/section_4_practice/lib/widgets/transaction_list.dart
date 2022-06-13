@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
     final deviceWidth =MediaQuery.of(context).size.width;
 
     return Container(
-      height: deviceHeight * 0.65,
+      height: deviceHeight * 0.5,
       width: deviceWidth,
       child: transactions.isEmpty ? Column(
         children: [

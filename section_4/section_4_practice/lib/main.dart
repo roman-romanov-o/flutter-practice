@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:section_4_practice/widgets/chart.dart';
 import 'models/transaction.dart';
 import 'package:section_4_practice/widgets/transaction_list.dart';
 import 'package:section_4_practice/models/transaction.dart';
@@ -63,7 +64,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> transactions = [];
+  final List<Transaction> transactions = [
+    Transaction(
+        id: 'test1',
+        title: 'Test 1',
+        date: DateTime.now().subtract(Duration(days: 1)),
+        amount: 25.00
+    ),
+    Transaction(
+        id: 'test1',
+        title: 'Test 1',
+        date: DateTime.now().subtract(Duration(days: 2)),
+        amount: 25.00
+    ),
+    Transaction(
+        id: 'test1',
+        title: 'Test 1',
+        date: DateTime.now().subtract(Duration(days: 2)),
+        amount: 25.00
+    ),
+    Transaction(
+        id: 'test1',
+        title: 'Test 1',
+        date: DateTime.now().subtract(Duration(days: 3)),
+        amount: 25.00
+    ),
+  ];
+  final int recentTransactionsDays = 7;
+
+  get recentTransactions {
+    var startFromDate = DateTime.now().subtract(
+        Duration(days: recentTransactionsDays)
+    );
+    return transactions.where(
+      (element) => element.date.isAfter(startFromDate)
+    ).toList();
+  }
+
 
   void addTransaction(String title, double amount) {
     setState(() {
@@ -98,7 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-              Card(child: Text('Some graph here in future'),),
+              Flexible(
+
+                child: Chart(recentTransactions),
+              ),
               TransactionList(transactions),
           ],
         ),
