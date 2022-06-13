@@ -12,6 +12,14 @@ class _AddTransactionState extends State<AddTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  void submitData(String title, double amount) {
+    widget.addTxMethod(
+        titleController.text,
+        double.parse(amountController.text)
+    );
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,14 +44,10 @@ class _AddTransactionState extends State<AddTransaction> {
           // keyboardType: TextInputType.number,
         ),
         TextButton(
-            onPressed: () {
-              widget.addTxMethod(
-                  titleController.text,
-                  double.parse(amountController.text)
-              );
-              titleController.clear();
-              amountController.clear();
-            },
+            onPressed: () => submitData(
+                titleController.text,
+                double.parse(amountController.text)
+            ),
             child: Text('Add new transaction')
         ),
       ],),
