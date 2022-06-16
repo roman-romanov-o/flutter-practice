@@ -26,44 +26,22 @@ class TransactionList extends StatelessWidget {
         ],
       ) : ListView.builder(
         itemBuilder: (ctx, index) {
-          return Card(child: Row(
-              children: [
-                Container(
-                  child: Text(
-                    "\$${transactions[index].amount}"
-                  ),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      border: Border.all(
-                        color: Theme.of(context).primaryColorLight,
-                      )
-                  ),
-                  margin: EdgeInsets.all(10.00),
-                  padding: EdgeInsets.all(25),
+          return Card(
+            elevation: 5,
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text("\$${transactions[index].amount}")
                 ),
-                Column(
-                  children: [
-                    Container(
-                      child: Text(
-                        transactions[index].title.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      margin: EdgeInsets.only(left: 10),
-                    ),
-                    Container(
-                      child: Text(
-                        DateFormat('yyyy-MM-dd – kk:mm').format(transactions[index].date)
-                      ),
-                      margin: EdgeInsets.only(left: 10),
-                    ),
-                  ],
-                )
-              ],
+              ),
+              title: Text(transactions[index].title.toString()),
+              subtitle: Text(
+                  DateFormat('yyyy-MM-dd – kk:mm')
+                  .format(transactions[index].date)
+              ),
             ),
-            elevation: 0.7,
-            shadowColor: Theme.of(context).primaryColor,
           );
         },
         itemCount: transactions.length,
