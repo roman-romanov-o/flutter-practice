@@ -50,10 +50,15 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1,
-      child: Row(
-        children: chartBars,
-      ),
+      elevation: 3,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: chartBars,
+        ),
+      )
+
     );
   }
 }

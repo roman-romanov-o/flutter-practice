@@ -10,6 +10,7 @@ class ChartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
+      fit: FlexFit.tight,
       child: Column(
         children: [
           Container(
