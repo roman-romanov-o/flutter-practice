@@ -65,30 +65,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [
-    Transaction(
-        id: 'test1',
-        title: 'Test 1',
-        date: DateTime.now().subtract(Duration(days: 1)),
-        amount: 25.00
-    ),
-    Transaction(
-        id: 'test1',
-        title: 'Test 1',
-        date: DateTime.now().subtract(Duration(days: 2)),
-        amount: 25.00
-    ),
-    Transaction(
-        id: 'test1',
-        title: 'Test 1',
-        date: DateTime.now().subtract(Duration(days: 2)),
-        amount: 25.00
-    ),
-    Transaction(
-        id: 'test1',
-        title: 'Test 1',
-        date: DateTime.now().subtract(Duration(days: 3)),
-        amount: 25.00
-    ),
+    // Transaction(
+    //     id: 'test1',
+    //     title: 'Test 1',
+    //     date: DateTime.now().subtract(Duration(days: 1)),
+    //     amount: 25.00
+    // ),
+    // Transaction(
+    //     id: 'test1',
+    //     title: 'Test 1',
+    //     date: DateTime.now().subtract(Duration(days: 2)),
+    //     amount: 25.00
+    // ),
+    // Transaction(
+    //     id: 'test1',
+    //     title: 'Test 1',
+    //     date: DateTime.now().subtract(Duration(days: 2)),
+    //     amount: 25.00
+    // ),
+    // Transaction(
+    //     id: 'test1',
+    //     title: 'Test 1',
+    //     date: DateTime.now().subtract(Duration(days: 3)),
+    //     amount: 25.00
+    // ),
   ];
   final int recentTransactionsDays = 7;
 
@@ -102,14 +102,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-  void addTransaction(String title, double amount) {
+  void addTransaction(String title, double amount, DateTime date) {
     setState(() {
       transactions.add(
           Transaction(
               id: 'test',
               title: title,
               amount: amount,
-              date: DateTime.now()
+              date: date
           )
       );
     });
