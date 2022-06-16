@@ -4,11 +4,14 @@ import 'models/transaction.dart';
 import 'package:section_4_practice/widgets/transaction_list.dart';
 import 'package:section_4_practice/models/transaction.dart';
 import 'package:section_4_practice/widgets/add_transaction.dart';
+import 'package:uuid/uuid.dart';
+
 
 void main() {
   runApp(MyApp());
 }
 
+var uuid = Uuid();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -106,12 +109,18 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       transactions.add(
           Transaction(
-              id: 'test',
+              id: uuid.v1(),
               title: title,
               amount: amount,
-              date: date
+              date: date,
           )
       );
+    });
+  }
+
+  void deleteTransaction(String transactionId) {
+    setState(() {
+      transactions.removeWhere((element) => element.id == transactionId);
     });
   }
 
@@ -136,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
               Chart(recentTransactions),
-              TransactionList(transactions),
+              TransactionList(transactions, deleteTransaction),
           ],
         ),
       ),
